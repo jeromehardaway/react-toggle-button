@@ -7,6 +7,14 @@ import isFunction from 'lodash/isFunction';
 import './index.css';
 
 class ToggleSwitch extends Component {
+	state = { enabled: this.enabledFromProps()}
+	isEnabled = () => this.state.enabled
+	enabledFromProps() {
+		let {enabled } = this.props;
+
+		enabled = isFunction(enabled) ? enabled : enabled;
+		return isBoolean(enabled) && enabled;
+	}
 }
 
 ToggleSwitch.propTypes = {
